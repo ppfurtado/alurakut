@@ -1,12 +1,13 @@
 import MainGrid from "../src/components/MainGrid";
 import Box from "../src/components/Box";
-import { AlurakutMenu } from "../src/lib/AluraCommons";
+import { AlurakutMenu, OrkutNostalgicIconSet } from "../src/lib/AluraCommons";
+import { ProfileRelationsBoxWrapper } from "../src/components/ProfileRalations";
 
 function ProfileSidebar({ githubUser }) {
   return (
     <Box>
       <img
-        style={{ borderRadius: "50%" }}
+        style={{ borderRadius: "8px" }}
         src={`https://github.com/${githubUser}.png`}
         alt="avatar Profile"
       />
@@ -16,7 +17,14 @@ function ProfileSidebar({ githubUser }) {
 
 export default function Home() {
   const githubUser = "ppfurtado";
-
+  const pessoasFavoritas = [
+    "juunegreiros",
+    "omariosouto",
+    "peas",
+    "rafaballerini",
+    "marcobrunodev",
+    "felipefialho",
+  ];
   return (
     <>
       <AlurakutMenu />
@@ -25,13 +33,34 @@ export default function Home() {
           <ProfileSidebar githubUser={githubUser} />
         </div>
         <div className="welcomeArea" style={{ gridArea: "welcomeArea" }}>
-          <Box>Bem vindo</Box>
+          <Box>
+            <h1 className="title">Bem vindo</h1>
+
+            <OrkutNostalgicIconSet />
+          </Box>
         </div>
         <div
           className="profileRelationArea"
           style={{ gridArea: "profileRelationArea" }}
         >
-          <Box>Pessoas da Comunidade</Box>
+          <ProfileRelationsBoxWrapper>
+            <h2 className="smallTitle">
+              Pessoas da Comunidade ({pessoasFavoritas.length})
+            </h2>
+            <ul>
+              {pessoasFavoritas.map((pessoasFavorita) => (
+                <li key={pessoasFavorita}>
+                  <a>
+                    <img
+                      src={`https://github.com/${pessoasFavorita}.png`}
+                      alt=""
+                    />
+                    <span>{pessoasFavorita}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </ProfileRelationsBoxWrapper>
           <Box>Comunidade</Box>
         </div>
       </MainGrid>

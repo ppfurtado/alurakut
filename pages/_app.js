@@ -1,11 +1,11 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { AlurakutStyles } from "../src/lib/AluraCommons";
 
 const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
   }
 
   body {
@@ -24,6 +24,12 @@ const GlobalStyle = createGlobalStyle`
     height: auto;
     display: block;
   }
+
+  li {
+    list-style: none;
+  }
+
+  ${AlurakutStyles}
 
 `;
 
